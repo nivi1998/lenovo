@@ -4,3 +4,4 @@
 Product list detail(start 1hr):- create product folder in page folder:-> create [slug].js file to create product details page(square bracket is used for create dynamc route) 
 Product Add to cart:- using react context. (to get more info go to the hpw react context work)
 Shopping cart page (when user click on add to cart display product checkout page):- 
+handle changing cart items
