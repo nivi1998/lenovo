@@ -1,17 +1,34 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import React from 'react';
 import Layout from '../../components/Layout';
 import data from '../../utils/data';
 import Image from 'next/image';
+import { useContext } from 'react';
+import { Store } from '../../utils/Store';
 
 export default function ProductScreen() {
+  //call useContext to add cartItem
+  const { state, dispatch } = useContext(Store);
+
   const { query } = useRouter();
   const { slug } = query;
   const product = data.products.find((x) => x.slug === slug);
   if (!product) {
     return <div>product Not Found </div>;
   }
+
+  const addToCartHandler = () => {
+    //increase the item in cart
+    const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+
+    if (product.countinStock < quantity) {
+      alert('sorry. Product is out of Stock');
+      return;
+    }
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+  };
+
   return (
     <Layout title={product.name}>
       <div className="py-2">
@@ -50,7 +67,13 @@ export default function ProductScreen() {
               <div>Status</div>
               <div>{product.countinStock > 0 ? 'In Stock' : 'Unavailable'}</div>
             </div>
-            <button className="primary-button w-full"> Add to cart </button>
+            <button
+              className="primary-button w-full"
+              onClick={addToCartHandler}
+            >
+              {' '}
+              Add to cart{' '}
+            </button>
           </div>
         </div>
       </div>
