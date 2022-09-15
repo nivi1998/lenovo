@@ -1,0 +1,4 @@
+
+
+
+Product list detail(start 1hr):- create product folder in page folder:-> create [slug].js file to create product details page(square bracket is used for create dynamc route) 
