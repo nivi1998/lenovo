@@ -1,12 +1,16 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import React, { Children } from 'react';
-import { useContext } from 'react';
+import React, { Children, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { Store } from '../utils/Store';
 
 function Layout({ title, children }) {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+  useEffect(() => {
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0)); // save the cart content on  home page
+  }, [cart.cartItems]);
   return (
     <>
       <Head>
@@ -25,9 +29,9 @@ function Layout({ title, children }) {
               <Link href="/cart">
                 <a className="p-2">
                   Cart
-                  {cart.cartItems.length > 0 && (
+                  {cartItemsCount > 0 && (
                     <span className="ml-l rounded-full bg-blue-600 px-2 py-1 text-xs font-bold text-white">
-                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                      {cartItemsCount}
                     </span>
                   )}
                 </a>

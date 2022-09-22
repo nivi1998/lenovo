@@ -6,8 +6,9 @@ import { Store } from '../utils/Store';
 import Image from 'next/image';
 import { XCircleIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic'; //render the cart item to client side components
 
-export default function CartScreen() {
+function CartScreen() {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const {
@@ -65,7 +66,7 @@ export default function CartScreen() {
                           updateCartHandler(item, e.target.value)
                         }
                       >
-                        {[...Array(item.counInStock).keys()].map((x) => (
+                        {[...Array(item.countinStock).keys()].map((x) => (
                           <option key={x + 1} value={x + 1}>
                             {x + 1}
                           </option>
@@ -87,8 +88,9 @@ export default function CartScreen() {
             <ul>
               <li>
                 <div className="pb-3 text-xl">
-                  Subtotal ( {cartItems.reduce((a, c) => a + c.quantity, 0)} ) :
-                  $ {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+                  Subtotal ( {cartItems.reduce((a, c) => a + c.quantity, 0)} )
+                  {''}: ${' '}
+                  {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
                 </div>
               </li>
               <li>
@@ -106,3 +108,4 @@ export default function CartScreen() {
     </Layout>
   );
 }
+export default dynamic(() => Promise.resolve(CartScreen), { ssr: false }); //export cart screen dynamic that render in client side screen,   dynamic ssr
