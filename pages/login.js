@@ -19,6 +19,7 @@ export default function login() {
       router.push(redirect || '/');
     }
   }, [router, session, redirect]);
+
   const {
     handleSubmit,
     register,
