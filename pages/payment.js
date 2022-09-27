@@ -28,7 +28,7 @@ export default function PaymentPage() {
         paymentMethod: selectedPaymentMehtod,
       })
     );
-    router.push('/placeorder');
+    router.push('/placeOrder');
   };
   useEffect(() => {
     if (!shippingAddress.address) {
@@ -72,3 +72,5 @@ export default function PaymentPage() {
     </Layout>
   );
 }
+
+PaymentPage.auth = true;
