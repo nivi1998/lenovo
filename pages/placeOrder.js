@@ -100,7 +100,7 @@ export default function PlaceOrderPage() {
                     <th className="px-5 text-left">Item</th>
                     <th className="px-5 text-right">Quantity</th>
                     <th className="px-5 text-right">Price</th>
-                    <th className="px-5 ">Subtotal</th>
+                    <th className="px-5  text-right">Subtotal</th>
                   </tr>
                 </thead>
                 <tbody>
