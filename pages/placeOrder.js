@@ -55,6 +55,7 @@ export default function PlaceOrderPage() {
           cartItems: [],
         })
       );
+
       router.push(`/order/${data._id}`);
     } catch (err) {
       setLoading(false);

@@ -32,6 +32,7 @@ function reducer(state, action) {
 function OrderScreen() {
   // order/:id
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+
   const { query } = useRouter();
   const orderId = query.id;
 
@@ -51,6 +52,7 @@ function OrderScreen() {
         dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
       }
     };
+
     if (!order._id || successPay || (order._id && order._id !== orderId)) {
       fetchOrder();
       if (successPay) {
@@ -84,6 +86,7 @@ function OrderScreen() {
     isDelivered,
     deliveredAt,
   } = order;
+
   function createOrder(data, actions) {
     return actions.order
       .create({
@@ -93,8 +96,8 @@ function OrderScreen() {
           },
         ],
       })
-      .then((orderId) => {
-        return orderId;
+      .then((orderID) => {
+        return orderID;
       });
   }
 
@@ -107,14 +110,13 @@ function OrderScreen() {
           details
         );
         dispatch({ type: 'PAY_SUCCESS', payload: data });
-        toast.success('Order is paid successfully');
+        toast.success('Order is paid successgully');
       } catch (err) {
         dispatch({ type: 'PAY_FAIL', payload: getError(err) });
         toast.error(getError(err));
       }
     });
   }
-
   function onError(err) {
     toast.error(getError(err));
   }
@@ -142,7 +144,6 @@ function OrderScreen() {
                 <div className="alert-error">Not delivered</div>
               )}
             </div>
-
             <div className="card p-5">
               <h2 className="mb-2 text-lg">Payment Method</h2>
               <div>{paymentMethod}</div>
@@ -152,7 +153,6 @@ function OrderScreen() {
                 <div className="alert-error">Not paid</div>
               )}
             </div>
-
             <div className="card overflow-x-auto p-5">
               <h2 className="mb-2 text-lg">Order Items</h2>
               <table className="min-w-full">
@@ -244,6 +244,5 @@ function OrderScreen() {
     </Layout>
   );
 }
-
 OrderScreen.auth = true;
 export default OrderScreen;
