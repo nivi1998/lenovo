@@ -35,7 +35,7 @@ function PaymentPage() {
       return router.push('/shipping');
     }
     setSelectedPaymentMehtod(paymentMethod || '');
-  }, [setSelectedPaymentMehtod, router, shippingAddress.address]);
+  }, [paymentMethod, router, shippingAddress.address]);
 
   return (
     <Layout title="payment Method">
