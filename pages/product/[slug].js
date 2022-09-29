@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
-import data from '../../utils/data';
 import Image from 'next/image';
 import React, { useContext } from 'react';
 import { Store } from '../../utils/Store';
 import db from '../../utils/db';
 import Product from '../../models/Product';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default function ProductScreen(props) {
   const { product } = props;
@@ -29,7 +29,6 @@ export default function ProductScreen(props) {
 
     if (data.countinStock < quantity) {
       return toast.error('sorry product is out of stock');
-      return;
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
     router.push('/cart');
