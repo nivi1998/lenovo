@@ -56,7 +56,7 @@ export default function LoginScreen() {
         <div className="mb-4">
           <label htmlFor="name">Name</label>
           <input
-            type="text"
+            type="name"
             className="w-full"
             id="name"
             autoFocus
@@ -133,7 +133,7 @@ export default function LoginScreen() {
           <button className="primary-button">Register</button>
         </div>
         <div className="mb-4 ">
-          Don&apos;t have an account? &nbsp;
+          Don&pos;t have an account? &nbsp;
           <Link href={`/register?redirect=${redirect || '/'}`}>Register</Link>
         </div>
       </form>
