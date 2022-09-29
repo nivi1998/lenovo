@@ -6,7 +6,7 @@ import CheckoutWizard from '../components/CheckoutWizard';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
 
-export default function PaymentPage() {
+function PaymentPage() {
   const [selectedPaymentMehtod, setSelectedPaymentMehtod] = useState('');
 
   const { state, dispatch } = useContext(Store);
@@ -28,7 +28,7 @@ export default function PaymentPage() {
         paymentMethod: selectedPaymentMehtod,
       })
     );
-    router.push('/placeOrder');
+    router.push('/placeorder');
   };
   useEffect(() => {
     if (!shippingAddress.address) {
@@ -74,3 +74,4 @@ export default function PaymentPage() {
 }
 
 PaymentPage.auth = true;
+export default PaymentPage;
