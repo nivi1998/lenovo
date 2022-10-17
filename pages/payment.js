@@ -28,7 +28,7 @@ function PaymentPage() {
         paymentMethod: selectedPaymentMehtod,
       })
     );
-    router.push('/placeOrder');
+    router.push('/placeorder');
   };
   useEffect(() => {
     if (!shippingAddress.address) {
