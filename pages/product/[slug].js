@@ -18,6 +18,7 @@ export default function ProductScreen(props) {
   //const { slug } = query;
   //const product = data.products.find((x) => x.slug === slug);
   if (!product) {
+    //check in last instead of layout div
     return <Layout title="product Not Found">product Not Found </Layout>;
   }
 
@@ -76,8 +77,7 @@ export default function ProductScreen(props) {
               className="primary-button w-full"
               onClick={addToCartHandler}
             >
-              {' '}
-              Add to cart{' '}
+              Add to cart
             </button>
           </div>
         </div>
