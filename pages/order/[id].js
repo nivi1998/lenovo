@@ -59,6 +59,7 @@ function OrderScreen() {
         dispatch({ type: 'PAY_RESET' });
       }
     } else {
+      // get the client id from backend
       const loadPaypalScript = async () => {
         const { data: clientId } = await axios.get('/api/keys/paypal');
         paypalDispatch({
